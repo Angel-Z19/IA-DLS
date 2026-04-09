@@ -1,20 +1,30 @@
-import random
+# Representación de un grafo en Python
+grafo = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F'],
+    'D': [],
+    'E': [],
+    'F': []
+}
 
-# Listas con partes de la excusa
-personajes = ["Un dinosaurio", "Mi gato", "Un alien", "Mi vecino"]
-acciones = ["se comió", "quemó", "escondió", "lanzó al espacio"]
-objetos = ["mi tarea", "mi computadora", "mi código", "las llaves"]
 
-def generar_excusa():
-    # Seleccionamos un elemento al azar de cada lista
-    sujeto = random.choice(personajes)
-    verbo = random.choice(acciones)
-    cosa = random.choice(objetos)
+def dls(nodo, objetivo, limite):
+    print(f"Visitando nodo: {nodo} (Límite restante: {limite})")
     
-    # Construimos la frase usando f-strings
-    excusa = f"¡Lo siento! {sujeto} {verbo} {cosa}."
-    return excusa
+    if nodo == objetivo:
+        return True
+    
+    if limite <= 0:
+        return False
+    
+    # Explorar vecinos (hijos)
+    for vecino in grafo.get(nodo, []):
+        if dls(vecino, objetivo, limite - 1):
+            return True
+            
+    return False
 
-# Llamamos a la función e imprimimos el resultado
-print("--- Generador de Excusas Pro ---")
-print(generar_excusa())
+# Ejecución
+resultado = dls('A', 'F', limite=2)
+print(f"¿Objetivo encontrado?: {resultado}")
