@@ -1,11 +1,20 @@
 class Node:
-    def __init__(self, state, parent=None, depth=0):
+    def __init__(self, state, parent=None, depth=0, path_cost = 0):
         self.state = state
         self.parent = parent
         self.depth = depth
+        self.path_cost = path_cost
 
     def __repr__(self):
         return f"Node({self.state}, depth={self.depth})"
+    
+    def get_path(self):
+        path = []
+        current = self
+        while current:
+            path.append(current.state)
+            current = current.parent
+        return path[::-1] # Invertimos la lista para que vaya de Inicio a Fin
 
 class Problem:
     def __init__(self, initial_state, goal_state, graph):
@@ -18,8 +27,12 @@ class Problem:
     
     def expand(self, node):
         children = []
-        for succesor in self.graph.get(node.state, []):
-            children.append(Node(succesor, parent=node, depth=node.depth + 1))
+        for succesor, distance in self.graph.get(node.state, []):
+            new_cost = node.path_cost + distance
+            children.append(Node(state = succesor,
+                                 parent=node,
+                                 depth=node.depth + 1,
+                                 path_cost=new_cost))
         return children
 
 
