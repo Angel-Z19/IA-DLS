@@ -15,7 +15,7 @@ def depth_limited_search(problem, l):
             return node
         
         # Si el nodo actual excede el límite l
-        if node.depth > l:
+        if node.depth == l:
             result = CUTOFF
         
         # Si no es un ciclo, expandimos (importante para no quedar en bucles)
