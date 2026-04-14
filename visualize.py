@@ -1,6 +1,8 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+import matplotlib.image as mpimg
+from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 from models import Node
 
 def animar_recorrido(grafo_dict, resultado, posiciones):
@@ -28,9 +30,16 @@ def animar_recorrido(grafo_dict, resultado, posiciones):
     nx.draw(G, posiciones, with_labels=True, node_color='lightblue', 
             node_size=700,  font_size=7, edge_color='silver', ax=ax)
 
-    # Creamos el "viajero" (usaremos un emoji de carro o persona)
-    viajero = ax.text(0, 0, '🚗', fontsize=20, ha='center', va='center', zorder=10)
-    
+    img = mpimg.imread("silverado.png")
+    imagebox = OffsetImage(img, zoom=0.02)  # cambia zoom si se ve grande/chico
+    x0, y0 = posiciones[camino[0]]
+    viajero = AnnotationBbox(
+    imagebox,
+    (x0, y0),
+    xybox=(x0, y0),
+    frameon=False
+    )
+    ax.add_artist(viajero)
     # Línea que marcará el rastro
     rastro_x, rastro_y = [], []
     linea_rastro, = ax.plot([], [], color='orange', linewidth=3, alpha=0.6)
@@ -41,7 +50,8 @@ def animar_recorrido(grafo_dict, resultado, posiciones):
         x, y = posiciones[ciudad_actual]
         
         # Movemos el icono
-        viajero.set_position((x, y))
+        viajero.xy = (x, y)
+        viajero.xybox = (x, y)
         
         # Actualizamos el rastro
         rastro_x.append(x)
@@ -61,7 +71,7 @@ def animar_recorrido(grafo_dict, resultado, posiciones):
     # 1. Ajustar los límites de los ejes (ajusta según tus coordenadas mínimas y máximas)
     # Si tus X van de 0 a 15 y Y de 0 a 10:
     ax.set_xlim(-2, 15) 
-    ax.set_ylim(-4, 14)
+    ax.set_ylim(-6, 14)
 
     # 3. Eliminar los márgenes automáticos que deja Matplotlib
     plt.subplots_adjust(left=0, right=1, top=0.9, bottom=0)

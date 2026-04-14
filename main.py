@@ -58,7 +58,9 @@ mapa_mexico = {
         ("Moctezuma", 178),
     ],
     "Guaymas": [("Hermosillo", 135), ("Ciudad Obregon", 130)],
-    "Ciudad Obregon": [("Guaymas", 130)],
+    "Ciudad Obregon": [("Guaymas", 130), ("Los Mochis", 240)],
+    "Los Mochis": [("Ciudad Obregon", 240), ("Guasave", 45)],
+    "Guasave": [("Los Mochis", 45)],
     # Chihuahua
     "Janos": [("Agua Prieta", 160), ("Ciudad Juarez", 212), ("Flores Magon", 173)],
     "Ciudad Juarez": [("Janos", 212), ("Villa Ahumada", 125)],
@@ -100,6 +102,7 @@ posiciones_mapa = {
     'Santa Ana': (6.7, 5.77), 'Nogales': (6.6, 9.4),
     'Cananea': (7.7, 6.7), 'Agua Prieta': (8.6, 9),
     'Hermosillo': (7, 2.4), 'Guaymas': (5.9, 0.35), 'Ciudad Obregon': (7.4, -1.5),
+    'Los Mochis':(7.6, -3), 'Guasave': (7.8, -4.5),
     'Moctezuma': (8.2, 3.16), 'Yécora': (8.8, 1.15),
     'Navojoa': (7, 4), 'Alamos': (7.5, 3.8),
 
@@ -114,7 +117,7 @@ posiciones_mapa = {
 
 
 inicio = 'Tijuana'
-meta = 'Ciudad Juarez'
+meta = 'Guasave'
 limite = 20
 
 
