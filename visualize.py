@@ -26,7 +26,7 @@ def animar_recorrido(grafo_dict, resultado, posiciones):
 
     # Dibujamos el mapa estático de fondo (muy tenue)
     nx.draw(G, posiciones, with_labels=True, node_color='lightblue', 
-            node_size=700,  font_size=7, edge_color='silver', ax=ax)
+            node_size=900,  font_size=7, edge_color='silver', ax=ax)
 
     # Creamos el "viajero" (usaremos un emoji de carro o persona)
     viajero = ax.text(0, 0, '🚗', fontsize=20, ha='center', va='center', zorder=10)
@@ -67,7 +67,7 @@ def animar_recorrido(grafo_dict, resultado, posiciones):
     plt.subplots_adjust(left=0, right=1, top=0.9, bottom=0)
 
     ani = animation.FuncAnimation(fig, actualizar, frames=len(camino), 
-                                  interval=600, repeat=False)
+                                  interval=800, repeat=False)
 
     plt.axis('off')
     plt.show()

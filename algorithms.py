@@ -10,7 +10,7 @@ def depth_limited_search(problem, l):
     
     while frontier:
         node = frontier.pop() # LIFO queue (Stack)
-        
+            
         if problem.is_goal(node.state):
             return node
         

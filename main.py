@@ -113,8 +113,8 @@ posiciones_mapa = {
 }
 
 
-inicio = 'Tijuana'
-meta = 'Ciudad Juarez'
+inicio = 'San Jose del Cabo'
+meta = 'Tijuana'
 limite = 20
 
 
